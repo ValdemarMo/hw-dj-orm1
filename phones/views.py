@@ -4,6 +4,11 @@ from phones.models import Phone
 def index(request):
     return redirect('catalog')
 
+# Для реализации сортировки можно к урлу добавить параметр sort и получать его через request.GET. Например:
+#
+# <имя_сайта>/catalog?sort=name - сортировка по названию
+# <имя_сайта>/catalog?sort=min_price - сначала отображать дешевые
+
 def show_catalog(request):
     sort = request.GET.get('sort')
     if sort == 'name':
