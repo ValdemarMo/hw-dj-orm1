@@ -12,19 +12,19 @@ def index(request):
 def show_catalog(request):
     sort = request.GET.get('sort')
     if sort == 'name':
-        my_objects = Phone.objects.all().order_by('name')
+        p_objects = Phone.objects.all().order_by('name')
         print(Phone.objects.all().order_by('name'))
     elif sort == 'min_price':
-        my_objects = Phone.objects.all().order_by('price')
+        p_objects = Phone.objects.all().order_by('price')
         print(Phone.objects.all().order_by('-price'))
     elif sort == 'max_price':
-        my_objects = Phone.objects.all().order_by('-price')
+        p_objects = Phone.objects.all().order_by('-price')
         print(str(Phone.objects.all().order_by('price')))
     else:
-        my_objects = Phone.objects.all()
+        p_objects = Phone.objects.all()
     template = 'catalog.html'
     context = {
-        'phones': my_objects
+        'phones': p_objects
     }
     return render(request, template, context)
 
