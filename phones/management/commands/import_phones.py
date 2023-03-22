@@ -19,5 +19,4 @@ class Command(BaseCommand):
                               price=line['price'],
                               release_date=line['release_date'],
                               lte_exists=line['lte_exists'])
-                # print(line)
                 phone.save()

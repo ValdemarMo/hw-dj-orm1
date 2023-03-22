@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
 from phones.models import Phone
 
 def index(request):
@@ -12,16 +12,19 @@ def index(request):
 def show_catalog(request):
     sort = request.GET.get('sort')
     if sort == 'name':
-        my_objects = Phone.objects.order_by('name')
+        my_objects = Phone.objects.all().order_by('name')
+        print(Phone.objects.all().order_by('name'))
     elif sort == 'min_price':
-        my_objects = Phone.objects.order_by('-price')
-    elif sort == 'max_price':
         my_objects = Phone.objects.all().order_by('price')
+        print(Phone.objects.all().order_by('-price'))
+    elif sort == 'max_price':
+        my_objects = Phone.objects.all().order_by('-price')
+        print(str(Phone.objects.all().order_by('price')))
     else:
         my_objects = Phone.objects.all()
     template = 'catalog.html'
     context = {
-        'my_objects': my_objects
+        'phones': my_objects
     }
     return render(request, template, context)
 
